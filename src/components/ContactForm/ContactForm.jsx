@@ -1,36 +1,35 @@
+import React from "react";
+import { useDispatch } from "react-redux";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
-import { useId } from "react";
-import { nanoid } from "nanoid";
+import { addContact } from "/src/redux/contactsSlice.js";
 
 import styles from "./ContactForm.module.css";
 
+// Валідаційна схема за допомогою Yup
 const ContactSchema = Yup.object().shape({
-  name: Yup.string()
-    .min(3, `The "Name" is too Short!`)
-    .max(50, `The "Name" is too Long!`)
-    .required("Required!"),
-  number: Yup.string()
-    .min(3, `The "Number" is too Short!`)
-    .max(50, `The "Number" is too Long!`)
-    .required("Required!"),
+  name: Yup.string().required("Name is required"),
+  number: Yup.string().required("Number is required"),
 });
 
+// Початкові значення для форми
 const initialValues = {
   name: "",
   number: "",
 };
 
-const ContactForm = ({ onAdd }) => {
-  const nameFieldId = useId();
-  const numberFieldId = useId();
-  const contactId = nanoid();
+const ContactForm = () => {
+  const dispatch = useDispatch();
 
-  const handleSubmit = (values, actions) => {
-    const newContact = { ...values, id: contactId };
-    onAdd(newContact);
-    actions.setSubmitting(false);
-    actions.resetForm();
+  const handleSubmit = (values, { setSubmitting, resetForm }) => {
+    const newContact = {
+      id: Date.now().toString(),
+      name: values.name,
+      phone: values.number,
+    };
+    dispatch(addContact(newContact));
+    setSubmitting(false);
+    resetForm();
   };
 
   return (
@@ -41,7 +40,7 @@ const ContactForm = ({ onAdd }) => {
     >
       {({ isSubmitting }) => (
         <Form className={styles.formContact}>
-          <label className={styles.formLabel} htmlFor={nameFieldId}>
+          <label className={styles.formLabel} htmlFor="name">
             Name
           </label>
           <div className={styles.formInputWrapper}>
@@ -49,7 +48,7 @@ const ContactForm = ({ onAdd }) => {
               className={styles.formInput}
               type="text"
               name="name"
-              id={nameFieldId}
+              id="name"
             />
             <ErrorMessage
               className={styles.formErrorMessage}
@@ -58,16 +57,15 @@ const ContactForm = ({ onAdd }) => {
             />
           </div>
 
-          <label className={styles.formLabel} htmlFor={numberFieldId}>
+          <label className={styles.formLabel} htmlFor="number">
             Number
           </label>
           <div className={styles.formInputWrapper}>
             <Field
               className={styles.formInput}
               type="tel"
-              inputMode="tel"
               name="number"
-              id={numberFieldId}
+              id="number"
             />
             <ErrorMessage
               className={styles.formErrorMessage}
