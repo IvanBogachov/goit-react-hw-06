@@ -35,7 +35,7 @@
 }
 
 .formButton {
-  padding: .6em 1.2em;
+  padding: 0.6em 1.2em;
   font-size: 1em;
   font-weight: 500;
   font-family: inherit;
@@ -43,9 +43,12 @@
   border: 1px solid transparent;
   cursor: pointer;
   background-color: buttonface;
-  transition: background-color .25s;
+  font-size: 18px;
+  color: #000000;
+  transition: background-color 0.25s, color 0.25s;
   margin-top: 10px;
 }
 .formButton:hover {
+  color: #ffffff;
   background-color: #646cff;
 }

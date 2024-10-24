@@ -1,20 +1,26 @@
 import { configureStore } from "@reduxjs/toolkit";
-import { persistStore, persistReducer, FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER } from "redux-persist";
-import storage from "redux-persist/lib/storage"; // локальне сховище
+import {
+  persistStore,
+  persistReducer,
+  FLUSH,
+  REHYDRATE,
+  PAUSE,
+  PERSIST,
+  PURGE,
+  REGISTER,
+} from "redux-persist";
+import storage from "redux-persist/lib/storage";
 import contactsReducer from "./contactsSlice";
 import filtersReducer from "./filtersSlice";
 
-// Конфігурація для redux-persist
 const persistConfig = {
   key: "contacts",
   storage,
-  whitelist: ["items"], // Тільки items буде збережено
+  whitelist: ["items"],
 };
 
-// Persist reducer для контактів
 const persistedContactsReducer = persistReducer(persistConfig, contactsReducer);
 
-// Створюємо store
 export const store = configureStore({
   reducer: {
     contacts: persistedContactsReducer,
@@ -28,5 +34,4 @@ export const store = configureStore({
     }),
 });
 
-// Створюємо persistor для PersistGate
 export const persistor = persistStore(store);

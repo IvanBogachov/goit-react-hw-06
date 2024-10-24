@@ -6,13 +6,17 @@ import { addContact } from "/src/redux/contactsSlice.js";
 
 import styles from "./ContactForm.module.css";
 
-// Валідаційна схема за допомогою Yup
 const ContactSchema = Yup.object().shape({
-  name: Yup.string().required("Name is required"),
-  number: Yup.string().required("Number is required"),
+  name: Yup.string()
+    .min(3, `The "Name" is too Short!`)
+    .max(50, `The "Name" is too Long!`)
+    .required("Required!"),
+  number: Yup.string()
+    .min(3, `The "Number" is too Short!`)
+    .max(50, `The "Number" is too Long!`)
+    .required("Required!"),
 });
 
-// Початкові значення для форми
 const initialValues = {
   name: "",
   number: "",
@@ -64,6 +68,7 @@ const ContactForm = () => {
             <Field
               className={styles.formInput}
               type="tel"
+              inputMode="tel"
               name="number"
               id="number"
             />

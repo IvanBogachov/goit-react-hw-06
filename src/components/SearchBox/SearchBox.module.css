@@ -2,6 +2,8 @@
   margin-bottom: 40px;
 }
 .searchLabel {
+  font-size: 18px;
+  font-weight: bold;
   display: block;
   margin-bottom: 10px;
 }

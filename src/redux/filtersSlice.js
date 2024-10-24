@@ -14,11 +14,8 @@ const filtersSlice = createSlice({
   },
 });
 
-// Експортуємо екшен
 export const { changeFilter } = filtersSlice.actions;
 
-// Селектор для отримання значення фільтра
 export const selectNameFilter = (state) => state.filters.name;
 
-// Експортуємо редюсер для store
 export default filtersSlice.reducer;

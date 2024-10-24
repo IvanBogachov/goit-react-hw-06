@@ -19,11 +19,8 @@ const contactsSlice = createSlice({
   },
 });
 
-// Експортуємо екшени
 export const { addContact, deleteContact } = contactsSlice.actions;
 
-// Селектор для отримання списку контактів
 export const selectContacts = (state) => state.contacts.items;
 
-// Експортуємо редюсер для store
 export default contactsSlice.reducer;
