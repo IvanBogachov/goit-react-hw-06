@@ -1,6 +1,25 @@
 .contactList {
   display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
+  flex-direction: column;
+  align-items: center;
   gap: 10px;
+  list-style: none;
+}
+.contactItem {
+  display: flex;
+  align-items: center;
+  margin-right: 5px;
+}
+.modalBtn {
+  display: block;
+  cursor: pointer;
+  padding: 5px;
+  margin-left: 10px;
+  border-radius: 8px;
+  border: 1px solid transparent;
+  background-color: buttonface;
+  transition: background-color .25s;
+}
+.modalBtn:hover {
+  background-color: #646cff;
 }

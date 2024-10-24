@@ -17,6 +17,7 @@ const Contact = ({ id, number, name, onDelete }) => {
         </div>
       </div>
       <button
+        className={styles.contactButton}
         onClick={() => onDelete(id)}
         type="button"
         aria-label="delete button"
