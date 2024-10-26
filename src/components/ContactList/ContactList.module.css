@@ -1,17 +1,17 @@
 .contactList {
   display: flex;
-  flex-direction: column;
+  flex-wrap: wrap;
   align-items: center;
   gap: 10px;
   list-style: none;
 }
-.contactItem {
+/* .contactItem {
   display: flex;
   align-items: center;
   font-size: 18px;
   margin-right: 5px;
-}
-.modalBtn {
+} */
+/* .modalBtn {
   display: block;
   cursor: pointer;
   padding: 5px;
@@ -20,7 +20,7 @@
   border: 1px solid transparent;
   background-color: buttonface;
   transition: background-color 0.25s;
-}
-.modalBtn:hover {
+} */
+/* .modalBtn:hover {
   background-color: #646cff;
-}
+} */

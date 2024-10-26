@@ -1,4 +1,4 @@
-import { configureStore } from "@reduxjs/toolkit";
+import { configureStore } from '@reduxjs/toolkit';
 import {
   persistStore,
   persistReducer,
@@ -8,15 +8,15 @@ import {
   PERSIST,
   PURGE,
   REGISTER,
-} from "redux-persist";
-import storage from "redux-persist/lib/storage";
-import contactsReducer from "./contactsSlice";
-import filtersReducer from "./filtersSlice";
+} from 'redux-persist';
+import storage from 'redux-persist/lib/storage';
+import contactsReducer from './contactsSlice';
+import filtersReducer from './filtersSlice';
 
 const persistConfig = {
-  key: "contacts",
+  key: 'contacts',
   storage,
-  whitelist: ["items"],
+  whitelist: ['items'],
 };
 
 const persistedContactsReducer = persistReducer(persistConfig, contactsReducer);
@@ -29,7 +29,7 @@ export const store = configureStore({
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
       serializableCheck: {
-        ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER], // Ігнорувати ці екшени для серіалізації
+        ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
       },
     }),
 });
