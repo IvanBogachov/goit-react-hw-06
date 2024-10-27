@@ -1,9 +1,18 @@
-import { IoIosContact } from "react-icons/io";
-import { MdPhoneInTalk } from "react-icons/md";
+import React from 'react';
+import { useDispatch } from 'react-redux';
+import { deleteContact } from '/src/redux/contactsSlice.js';
+import { IoIosContact } from 'react-icons/io';
+import { MdPhoneInTalk } from 'react-icons/md';
 
-import styles from "./Contact.module.css";
+import styles from './Contact.module.css';
 
-const Contact = ({ id, number, name, onDelete }) => {
+const Contact = ({ id, number, name }) => {
+  const dispatch = useDispatch();
+
+  const handleDelete = () => {
+    dispatch(deleteContact(id));
+  };
+
   return (
     <li className={styles.contactItem}>
       <div>
@@ -16,11 +25,7 @@ const Contact = ({ id, number, name, onDelete }) => {
           <a href={`tel: ` + number}>{number}</a>
         </div>
       </div>
-      <button
-        onClick={() => onDelete(id)}
-        type="button"
-        aria-label="delete button"
-      >
+      <button onClick={handleDelete} type='button' aria-label='delete button'>
         Delete
       </button>
     </li>
